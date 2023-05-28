@@ -1,5 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
+import RandomFox from "./components/RandomFox";
 
 const Home: NextPage = () => {
   return (
@@ -13,6 +14,8 @@ const Home: NextPage = () => {
       <main>
         <h1 className="text-3xl font-bold underline">Hey Platzi 😎!</h1>
       <p>Esta es la parte del cuerpo de la pagina web</p>
+      <RandomFox/>
+      
       </main>
 
       <footer>Fin</footer>
