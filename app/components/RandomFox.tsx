@@ -1,11 +1,12 @@
+
 import React from "react";
 
+type Props={imagen: string}
 
-const randomNumber = () => Math.floor(Math.random() * 122) + 1;
 
-const RandomFox =(): JSX.Element =>{
+const RandomFox =({imagen}:Props): JSX.Element =>{
 
-    const imagen=`https://randomfox.ca/images/${randomNumber()}.jpg`;
+   
 
     return(
         <img width={320}
