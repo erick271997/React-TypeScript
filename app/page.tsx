@@ -1,24 +1,38 @@
 "use client";
-
 import type { NextPage } from "next";
 import Head from "next/head";
-
-
-import { useState } from "react";
-import RandomFox from "./components/RandomFox";
+import './estilo/Random.css'
+import { MouseEventHandler, useState } from "react";
+import LazyImage from "./components/LazyImage";
 
 
 const random = () => Math.floor(Math.random() * 122) + 1;
+
+
+
+
+//Generador de id unico
+const GenerateId=()=> Math.random().toString(36).substr(2,9)
+
+
+type ImageItem={id:string; url:string }
 const Home: NextPage = () => {
 
   "use client";
-   const[images, setImages]= useState <string[]> ([
-  `https://randomfox.ca/images/${random()}.jpg`,
-  `https://randomfox.ca/images/${random()}.jpg`,
-  `https://randomfox.ca/images/${random()}.jpg`,
-  `https://randomfox.ca/images/${random()}.jpg`,
-]);
-  return (
+   const[images, setImages]= useState <Array<ImageItem>>([]);
+  
+   const AddNewFox: MouseEventHandler<HTMLButtonElement>=(event)=>{
+    const newImgeItem={
+       id: GenerateId(), 
+       url:`https://randomfox.ca/images/${random()}.jpg`,
+  
+    };
+    setImages([
+      ...images,
+      newImgeItem
+    ])
+  }
+   return (
     <div>
       <Head>
         <title>Create Next App</title>
@@ -28,19 +42,25 @@ const Home: NextPage = () => {
 
       <main>
         <h1 className="text-3xl font-bold underline">Hey Platzi 😎!</h1>
+        <button className="btn" onClick={AddNewFox}>Add New Fox</button>
       <p>Esta es la parte del cuerpo de la pagina web</p>
-      {images.map((imagen, index)=>( 
-<div key={index} className="p-4">
+      {images.map(({id, url})=>( 
+<div key={id} className="p-4">
  
 
-      <RandomFox imagen={imagen}/>
+      <LazyImage src={url}
+          width={320}
+          height='auto'
+          title="Ramdow Fox"
+          className="mx-auto rounded-md bg-gray-300"
+          onClick={() => console.log("hey")} imagen={""}/>
 
    </div>  
   )  )}
       
       </main>
 
-      <footer>Fin</footer>
+      <footer className="footer">Fin</footer>
     </div>
   );
 };

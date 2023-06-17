@@ -1,3 +1,14 @@
 .random{
     background: black;
+    border: 5px;
+}
+.footer{
+    color: rgb(241, 21, 21);
+    font-size: 60px;
+}
+.btn{
+    background-color: cornflowerblue;
+    border-bottom: 45px;
+    border-radius: 60px;
+    border-color: greenyellow;
 }
